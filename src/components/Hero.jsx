@@ -168,15 +168,15 @@ const Hero = () => {
                      px-8 md:px-16 max-w-xs md:max-w-sm z-20 pointer-events-none"
         >
           <p className="text-[11px] tracking-[0.35em] uppercase text-brand-500 font-semibold mb-4">
-            Since 2010
+            Since 2019
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
-            Your Future<br />
-            Begins<br />
-            <span className="text-gradient">Globally.</span>
+            Global Reach.<br />
+            Local Roots.<br />
+            <span className="text-gradient">Unlimited potential.</span>
           </h1>
           <p className="mt-5 text-sm md:text-base text-gray-600 leading-relaxed font-medium">
-            We open doors to universities that shape careers — not just degrees.
+            From premier South Indian colleges to elite global universities.
           </p>
         </motion.div>
 
@@ -189,16 +189,15 @@ const Hero = () => {
                      px-8 md:px-16 max-w-xs md:max-w-sm z-20 pointer-events-none"
         >
           <p className="text-[11px] tracking-[0.35em] uppercase text-brand-500 font-semibold mb-4">
-            500+ Universities
+            Domestic + Global
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
-            Every dream<br />
-            has the right<br />
-            <span className="text-gradient">destination.</span>
+            South India's<br />
+            Top Colleges<br />
+            <span className="text-gradient">at your reach.</span>
           </h2>
           <p className="mt-5 text-sm md:text-base text-gray-600 leading-relaxed font-medium">
-            Canada · UK · Australia · Germany.<br />
-            We know the path. We'll walk it with you.
+            Expert guidance for medical, engineering & management in KL, KA & TN.
           </p>
         </motion.div>
 

@@ -1,27 +1,23 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Countries from './components/Countries';
-import Services from './components/Services';
-import Timeline from './components/Timeline';
-import Testimonials from './components/Testimonials';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './pages/Home';
+import Blog from './pages/Blog';
+import Destinations from './pages/Destinations';
+import AdmissionSouthIndia from './pages/AdmissionSouthIndia';
 
 function App() {
   return (
-    <div className="bg-[#fafcff] min-h-screen font-sans selection:bg-brand-200 selection:text-brand-900">
-      <Navbar />
-      <main>
-        <Hero />
-        <Countries />
-        <Services />
-        <Timeline />
-        <Testimonials />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="destinations" element={<Destinations />} />
+          <Route path="admission-south-india" element={<AdmissionSouthIndia />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

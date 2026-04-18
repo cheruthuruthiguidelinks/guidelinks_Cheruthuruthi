@@ -1,5 +1,6 @@
 import React from 'react';
 import { Globe, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logos/Guide-links.png';
 
 const Footer = () => {
@@ -33,12 +34,17 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
             <ul className="space-y-3">
-              {['About Us', 'Services', 'Destinations', 'Testimonials', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-gray-400 hover:text-brand-400 transition-colors flex items-center gap-2 text-sm">
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Destinations', path: '/destinations' },
+                { name: 'Admissions South India', path: '/admission-south-india' },
+                { name: 'Blog', path: '/blog' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link to={link.path} className="text-gray-400 hover:text-brand-400 transition-colors flex items-center gap-2 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>

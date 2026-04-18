@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logos/Guide-links.png';
 
 const Navbar = () => {
@@ -30,17 +31,25 @@ const Navbar = () => {
           </motion.div>
           
           <div className="hidden md:flex space-x-8 items-center">
-            {['Home', 'Destinations', 'Services', 'Process', 'Testimonials'].map((item, index) => (
-              <motion.a
+            {[
+              { name: 'Home', path: '/' },
+              { name: 'Destinations', path: '/destinations' },
+              { name: 'Domestic Admissions', path: '/admission-south-india' },
+              { name: 'Blog', path: '/blog' }
+            ].map((item, index) => (
+              <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`${isScrolled ? 'text-gray-700' : 'text-gray-800'} hover:text-brand-500 font-semibold transition-colors`}
+                key={item.name}
               >
-                {item}
-              </motion.a>
+                <Link
+                  to={item.path}
+                  className={`${isScrolled ? 'text-gray-700' : 'text-gray-800'} hover:text-brand-500 font-semibold transition-colors`}
+                >
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
             <motion.button 
               initial={{ opacity: 0, scale: 0.9 }}
@@ -72,15 +81,20 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden glass-effect border-t border-white/20 shadow-xl">
           <div className="px-4 py-4 space-y-2">
-            {['Home', 'Destinations', 'Services', 'Process', 'Testimonials'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+            {[
+              { name: 'Home', path: '/' },
+              { name: 'Destinations', path: '/destinations' },
+              { name: 'Domestic Admissions', path: '/admission-south-india' },
+              { name: 'Blog', path: '/blog' }
+            ].map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
                 className="block px-3 py-3 text-base font-semibold text-gray-700 hover:text-brand-500 hover:bg-brand-50/50 rounded-lg transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
             <button className="w-full mt-4 px-4 py-3 bg-gradient-to-r from-brand-600 to-purple-500 text-white rounded-xl font-bold shadow-md hover:from-brand-500 hover:to-purple-400 transition-colors" style={{ backgroundSize: '200% auto', animation: 'gradient 3s linear infinite' }}>
               Consult Now
