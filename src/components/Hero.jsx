@@ -81,9 +81,20 @@ const Hero = () => {
     }
   };
 
+  const lastFrame = useRef(-1);
+  const rafId = useRef(null);
+
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    const frameIndex = Math.min(frameCount - 1, Math.floor(latest * frameCount));
-    requestAnimationFrame(() => drawFrame(frameIndex));
+    const frameIndex = Math.min(frameCount - 1, Math.floor(latest * (frameCount - 1)));
+    
+    // Only draw if the frame has actually changed to save CPU/GPU
+    if (frameIndex !== lastFrame.current) {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => {
+        drawFrame(frameIndex);
+        lastFrame.current = frameIndex;
+      });
+    }
   });
 
   useEffect(() => {
