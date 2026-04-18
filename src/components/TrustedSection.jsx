@@ -10,22 +10,22 @@ const TrustedSection = () => {
     offset: ["start start", "end end"]
   });
 
-  const text = "Trusted since 2019, Guidelinks has transformed over 5000 student lives. We are the official partners for 100+ premier colleges across South India including Coimbatore, Bangalore, and Kochi. From engineering hubs to medical excellence, our domestic and global expertise ensures your future is in safe hands. Once you start with us, your journey to success is guaranteed.";
+  const text = "Trusted since 2019, secured the future of 10,000+ students through professional consultancy.";
   
   const words = text.split(" ");
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-slate-950">
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center px-6 md:px-12 overflow-hidden">
+      <div className="sticky top-0 h-screen w-full flex items-center px-8 md:px-24 overflow-hidden">
         
         {/* Futuristic Background Elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px]" />
-          <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+          <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] -ml-40" />
+          <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
 
-        <div className="relative z-10 max-w-5xl">
-          <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-4 md:gap-x-4 md:gap-y-6">
+        <div className="relative z-10 max-w-4xl text-left">
+          <p className="flex flex-wrap items-center justify-start gap-x-3 gap-y-4 md:gap-x-4 md:gap-y-6">
             {words.map((word, i) => {
               const start = i / words.length;
               const end = (i + 1) / words.length;
