@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const TrustedSection = () => {
   const containerRef = useRef(null);
@@ -15,12 +15,12 @@ const TrustedSection = () => {
   const words = text.split(" ");
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-slate-950">
+    <div ref={containerRef} className="relative h-[200vh] bg-slate-950">
       <div className="sticky top-0 h-screen w-full flex items-center px-8 md:px-24 overflow-hidden">
         
         {/* Futuristic Background Elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[120px] -ml-40" />
+          <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[60px] -ml-40 opacity-40" />
           <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
 

@@ -42,7 +42,7 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-24 bg-brand-50 relative overflow-hidden">
-      <div className="absolute -left-40 top-20 w-[600px] h-[600px] bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      <div className="absolute -left-40 top-20 w-[600px] h-[600px] bg-brand-200/40 rounded-full blur-[80px]"></div>
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

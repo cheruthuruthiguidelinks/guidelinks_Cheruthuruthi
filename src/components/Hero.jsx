@@ -29,7 +29,10 @@ const Hero = () => {
       img.src = currentFrame(i);
       img.onload = () => {
         loaded++;
-        setImagesLoaded(loaded);
+        // Throttle state updates to prevent rapid re-renders
+        if (loaded === 1 || loaded % 15 === 0 || loaded === frameCount) {
+          setImagesLoaded(loaded);
+        }
       };
       images.current.push(img);
     }
@@ -42,7 +45,8 @@ const Hero = () => {
     const img = images.current[frameIndex];
     if (!img || !img.complete) return;
 
-    const dpr = window.devicePixelRatio || 1;
+    // Cap DPR to 1 or 1.5 for performance (avoiding 2x/3x retina canvas paints)
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const W = canvas.width / dpr;
     const H = canvas.height / dpr;
     
@@ -101,7 +105,7 @@ const Hero = () => {
     const resize = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const W = window.innerWidth;
       const H = window.innerHeight;
       canvas.style.width = `${W}px`;
@@ -147,8 +151,8 @@ const Hero = () => {
           style={{ width: '100%', height: '100%' }}
         />
 
-        {/* Loading screen */}
-        {loadPercent < 60 && (
+        {/* Loading screen - reduced threshold to 5% so it unblocks faster */}
+        {loadPercent < 5 && (
           <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-brand-50/90 backdrop-blur-sm gap-4">
             <span className="text-brand-600 font-semibold tracking-wide">
               Loading {loadPercent}%

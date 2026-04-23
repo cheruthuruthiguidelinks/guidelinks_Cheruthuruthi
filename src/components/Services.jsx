@@ -29,7 +29,7 @@ const Services = () => {
   return (
     <section id="services" className="py-24 bg-brand-50 relative overflow-hidden">
       {/* Decorative element */}
-      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-brand-200/40 rounded-full blur-[80px]"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

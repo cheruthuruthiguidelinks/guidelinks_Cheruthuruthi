@@ -26,23 +26,25 @@ const cities = [
   }
 ];
 
-const AdmissionSouthIndia = () => {
+const AdmissionSouthIndia = ({ showHero = true }) => {
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-24"
-      >
-        <span className="text-brand-600 font-semibold tracking-widest uppercase text-sm">Domestic Excellence</span>
-        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mt-4 mb-8">
-          South India <span className="text-gradient">Admissions.</span>
-        </h1>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Guiding you to the finest educational institutions across South India. 
-          Expert counseling for Medical, Engineering, and Management seats.
-        </p>
-      </motion.div>
+    <div className={`${showHero ? 'pt-32' : 'pt-0'} pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto`}>
+      {showHero && (
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-24"
+        >
+          <span className="text-brand-600 font-semibold tracking-widest uppercase text-sm">Domestic Excellence</span>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mt-4 mb-8">
+            South India <span className="text-gradient">Admissions.</span>
+          </h1>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Guiding you to the finest educational institutions across South India. 
+            Expert counseling for Medical, Engineering, and Management seats.
+          </p>
+        </motion.div>
+      )}
 
       {/* Grid of Cities/States */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-24">
