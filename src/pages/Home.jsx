@@ -6,6 +6,7 @@ import Countries from '../components/Countries';
 import Services from '../components/Services';
 import Timeline from '../components/Timeline';
 import Testimonials from '../components/Testimonials';
+import FAQ from '../components/FAQ';
 import CTA from '../components/CTA';
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       <Services />
       <Timeline />
       <Testimonials />
+      <FAQ />
       <CTA />
     </>
   );
