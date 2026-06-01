@@ -1,78 +1,154 @@
-import React from 'react';
-import { UserPlus, Search, FileText, CheckCircle, PlaneTakeoff } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { UserPlus, Search, FileText, CheckCircle, Plane } from 'lucide-react';
 
 const steps = [
   {
-    icon: <UserPlus className="w-6 h-6 text-white" />,
+    icon: <UserPlus className="w-5.5 h-5.5 text-white" />,
     title: 'Initial Consultation',
-    description: 'Meet our counselors to discuss your goals and profile.'
+    description: 'Meet our senior counselors to align on your academic profile, goals, and funding.'
   },
   {
-    icon: <Search className="w-6 h-6 text-white" />,
+    icon: <Search className="w-5.5 h-5.5 text-white" />,
     title: 'University Selection',
-    description: 'Shortlist universities based on your preferences and eligibility.'
+    description: 'Shortlist premium domestic and international colleges matching your eligibility.'
   },
   {
-    icon: <FileText className="w-6 h-6 text-white" />,
+    icon: <FileText className="w-5.5 h-5.5 text-white" />,
     title: 'Application Process',
-    description: 'Prepare documents and submit applications smoothly.'
+    description: 'Prepare documentation, edit personal statements, and submit applications cleanly.'
   },
   {
-    icon: <CheckCircle className="w-6 h-6 text-white" />,
+    icon: <CheckCircle className="w-5.5 h-5.5 text-white" />,
     title: 'Visa & Finance',
-    description: 'Get assistance with visa filing and education loans.'
+    description: 'Obtain assistance with visa filing, interviews, education loans, and scholarship options.'
   },
   {
-    icon: <PlaneTakeoff className="w-6 h-6 text-white" />,
+    icon: <Plane className="w-5.5 h-5.5 text-white" />,
     title: 'Pre-Departure',
-    description: 'Briefing and support for a seamless transition abroad.'
+    description: 'A pre-flight briefing covering culture integration, lodging, and airport pickup support.'
   }
 ];
 
 const Timeline = () => {
+  const containerRef = useRef(null);
+
+  // Track scroll progress of the section to draw the connector line
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const pathLength = useSpring(
+    useTransform(scrollYProgress, [0.15, 0.75], [0, 1]),
+    { stiffness: 60, damping: 20 }
+  );
+
   return (
-    <section id="process" className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-            <h2 
-              className="text-3xl md:text-5xl font-bold text-gray-900 mb-4"
-            >
-              Your Journey <span className="text-gradient">With Us</span>
-            </h2>
-            <p 
-              className="text-lg text-gray-600 max-w-2xl mx-auto"
-            >
-              A simple, transparent, and structured process to ensure your success.
-            </p>
+    <section id="process" ref={containerRef} className="py-28 bg-white relative overflow-hidden">
+      
+      {/* Decorative Blur elements */}
+      <div className="absolute top-1/4 left-0 w-[450px] h-[450px] bg-brand-100/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        {/* Header */}
+        <div className="text-center mb-24">
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-xs font-bold uppercase tracking-[0.25em] text-brand-600 mb-3"
+          >
+            Admissions Pipeline
+          </motion.p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3.5xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight"
+          >
+            Your Journey <span className="text-gradient">With Us</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto font-medium"
+          >
+            A highly structured, transparent, and proven 5-step process designed to turn complex visa guidelines and academic scores into successful enrollment letters.
+          </motion.p>
         </div>
 
-        <div className="relative">
-          {/* Connecting Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-brand-100 transform -translate-y-1/2">
-            <div 
-              className="h-full bg-gradient-to-r from-brand-400 to-brand-600 animate-pulse"
+        {/* Timeline Layout */}
+        <div className="relative mt-20">
+          
+          {/* ───── DESKTOP HORIZONTAL CONNECT LINE ───── */}
+          <div className="hidden lg:block absolute top-[44px] left-0 right-0 h-1 z-0 px-8">
+            <div className="w-full h-full bg-brand-50 rounded-full relative">
+              {/* Dynamic scroll-revealed line */}
+              <motion.div 
+                style={{ scaleX: pathLength }}
+                className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-brand-500 via-brand-400 to-accent-gold origin-left rounded-full"
+              />
+            </div>
+          </div>
+
+          {/* ───── MOBILE VERTICAL CONNECT LINE ───── */}
+          <div className="lg:hidden absolute left-[30px] top-8 bottom-8 w-1 bg-brand-50 rounded-full z-0">
+            <motion.div
+              style={{ scaleY: pathLength }}
+              className="w-full h-full bg-gradient-to-b from-brand-500 via-brand-400 to-accent-gold origin-top rounded-full"
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 relative z-10">
-            {steps.map((step) => (
-              <div
-                key={step.title}
-                className="flex flex-col items-center text-center group"
-              >
-                <div className="w-16 h-16 rounded-full bg-white shadow-[0_0_20px_rgba(14,165,233,0.2)] flex items-center justify-center mb-6 relative z-10 border-4 border-white group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center">
-                    {step.icon}
+          {/* Steps List */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-6 relative z-10">
+            {steps.map((step, index) => {
+              return (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.65, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-row lg:flex-col items-start lg:items-center text-left lg:text-center group relative gap-6 lg:gap-0"
+                >
+                  
+                  {/* Step bubble */}
+                  <div className="shrink-0 lg:mb-8 relative z-10">
+                    {/* Ring aura */}
+                    <div className="absolute -inset-1 bg-brand-500/10 rounded-full blur-[4px] group-hover:bg-accent-gold/15 transition-all duration-300" />
+                    
+                    {/* Circle Node */}
+                    <div className="w-[60px] h-[60px] rounded-full bg-white border-[3px] border-brand-50 shadow-md flex items-center justify-center relative group-hover:scale-108 transition-transform duration-350">
+                      <div className="w-full h-full rounded-full bg-gradient-to-br from-brand-400 to-brand-600 group-hover:from-brand-500 group-hover:to-accent-gold flex items-center justify-center shadow-inner transition-all duration-350">
+                        {step.icon}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm px-2">
-                  {step.description}
-                </p>
-              </div>
-            ))}
+
+                  {/* Text Contents */}
+                  <div className="flex-1 lg:px-4">
+                    {/* Number Badge */}
+                    <span className="text-[11px] font-extrabold font-mono text-accent-gold tracking-widest block lg:mb-2 uppercase">
+                      Step 0{index + 1}
+                    </span>
+                    <h3 className="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-brand-650 transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed font-medium">
+                      {step.description}
+                    </p>
+                  </div>
+
+                </motion.div>
+              );
+            })}
           </div>
         </div>
+
       </div>
     </section>
   );
