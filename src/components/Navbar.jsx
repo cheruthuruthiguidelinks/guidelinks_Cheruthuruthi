@@ -36,6 +36,7 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
+    { name: 'Team', path: '/team' },
     { name: 'Courses', path: '/courses' },
     { name: 'Predictor', path: '/college-predictor' },
     { name: 'Contact', path: '/contact' },
@@ -78,16 +79,16 @@ const Navbar = () => {
               alt="Guidelinks Logo"
               className="object-contain transition-all duration-300"
               style={{
-                height: isScrolled ? '34px' : '40px',
+                height: isScrolled ? '42px' : '48px',
                 width: 'auto',
-                maxWidth: '140px',
+                maxWidth: '180px',
               }}
             />
           </Link>
 
           {/* Desktop nav links */}
           <div className="hidden lg:flex items-center space-x-5">
-            {navLinks.slice(0, 3).map((item) => {
+            {navLinks.slice(0, 4).map((item) => {
               const active = isLinkActive(item.path);
               return (
                 <div key={item.name} className="relative py-2">
@@ -148,7 +149,7 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
 
-            {navLinks.slice(3).map((item) => {
+            {navLinks.slice(4).map((item) => {
               const active = isLinkActive(item.path);
               return (
                 <div key={item.name} className="relative py-2">

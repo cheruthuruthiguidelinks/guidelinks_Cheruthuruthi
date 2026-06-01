@@ -12,6 +12,7 @@ import CollegePredictor from './pages/CollegePredictor';
 import StudyIndia from './pages/StudyIndia';
 import StudyAbroad from './pages/StudyAbroad';
 import Contact from './pages/Contact';
+import Team from './pages/Team';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="admission-south-india" element={<AdmissionSouthIndia />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="team" element={<Team />} />
         </Route>
       </Routes>
     </Router>
