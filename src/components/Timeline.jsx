@@ -48,7 +48,7 @@ const Timeline = () => {
     <section id="process" ref={containerRef} className="py-28 bg-white relative overflow-hidden">
       
       {/* Decorative Blur elements */}
-      <div className="absolute top-1/4 left-0 w-[450px] h-[450px] bg-brand-100/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-brand-100/20 rounded-full blur-[90px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
@@ -86,20 +86,20 @@ const Timeline = () => {
           
           {/* ───── DESKTOP HORIZONTAL CONNECT LINE ───── */}
           <div className="hidden lg:block absolute top-[44px] left-0 right-0 h-1 z-0 px-8">
-            <div className="w-full h-full bg-brand-50 rounded-full relative">
+            <div className="w-full h-full bg-sky-50 rounded-full relative">
               {/* Dynamic scroll-revealed line */}
               <motion.div 
                 style={{ scaleX: pathLength }}
-                className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-brand-500 via-brand-400 to-accent-gold origin-left rounded-full"
+                className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-sky-600 via-sky-400 to-sky-300 origin-left rounded-full"
               />
             </div>
           </div>
 
           {/* ───── MOBILE VERTICAL CONNECT LINE ───── */}
-          <div className="lg:hidden absolute left-[30px] top-8 bottom-8 w-1 bg-brand-50 rounded-full z-0">
+          <div className="lg:hidden absolute left-[30px] top-8 bottom-8 w-1 bg-sky-50 rounded-full z-0">
             <motion.div
               style={{ scaleY: pathLength }}
-              className="w-full h-full bg-gradient-to-b from-brand-500 via-brand-400 to-accent-gold origin-top rounded-full"
+              className="w-full h-full bg-gradient-to-b from-brand-600 via-brand-400 to-brand-300 origin-top rounded-full"
             />
           </div>
 
@@ -119,11 +119,11 @@ const Timeline = () => {
                   {/* Step bubble */}
                   <div className="shrink-0 lg:mb-8 relative z-10">
                     {/* Ring aura */}
-                    <div className="absolute -inset-1 bg-brand-500/10 rounded-full blur-[4px] group-hover:bg-accent-gold/15 transition-all duration-300" />
+                    <div className="absolute -inset-1 bg-brand-400/10 rounded-full blur-[4px] group-hover:bg-brand-500/15 transition-all duration-300" />
                     
                     {/* Circle Node */}
                     <div className="w-[60px] h-[60px] rounded-full bg-white border-[3px] border-brand-50 shadow-md flex items-center justify-center relative group-hover:scale-108 transition-transform duration-350">
-                      <div className="w-full h-full rounded-full bg-gradient-to-br from-brand-400 to-brand-600 group-hover:from-brand-500 group-hover:to-accent-gold flex items-center justify-center shadow-inner transition-all duration-350">
+                      <div className="w-full h-full rounded-full bg-gradient-to-br from-brand-500 to-brand-700 group-hover:from-brand-400 group-hover:to-brand-600 flex items-center justify-center shadow-inner transition-all duration-350">
                         {step.icon}
                       </div>
                     </div>
@@ -132,7 +132,7 @@ const Timeline = () => {
                   {/* Text Contents */}
                   <div className="flex-1 lg:px-4">
                     {/* Number Badge */}
-                    <span className="text-[11px] font-extrabold font-mono text-accent-gold tracking-widest block lg:mb-2 uppercase">
+                    <span className="text-[11px] font-extrabold font-mono text-brand-500 tracking-widest block lg:mb-2 uppercase">
                       Step 0{index + 1}
                     </span>
                     <h3 className="text-lg font-extrabold text-gray-900 mb-2 group-hover:text-brand-650 transition-colors">

@@ -57,10 +57,10 @@ const Layout = () => {
 
   return (
     <HelmetProvider>
-      <div className="bg-[#fafcff] min-h-screen font-sans selection:bg-brand-200 selection:text-brand-900">
+      <div className="bg-white min-h-screen font-sans selection:bg-brand-100 selection:text-brand-900">
         {/* Scroll progress bar */}
         <motion.div
-          className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-700 via-brand-400 to-accent-gold origin-left z-[100]"
+          className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-600 via-brand-400 to-brand-300 origin-left z-[100]"
           style={{ scaleX }}
         />
 
