@@ -63,15 +63,14 @@ const Navbar = () => {
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed left-0 right-0 z-50 transition-all duration-500
-          lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:w-[90%] lg:max-w-7xl lg:rounded-full
-          px-5 lg:px-8 py-3.5 lg:py-3 ${
+        className={`fixed top-0 left-0 right-0 mx-auto z-50 transition-all duration-300
+          w-full lg:w-[90%] lg:max-w-7xl lg:rounded-full ${
           isScrolled
-            ? 'glass-effect top-0 lg:top-4 border-b border-brand-100/50 lg:border lg:border-brand-100/60 shadow-sm lg:shadow-[0_8px_32px_rgba(14,165,233,0.10)]'
-            : 'bg-white/90 backdrop-blur-md top-0 lg:top-6 border-b border-brand-50 lg:border lg:border-brand-100/40 lg:shadow-sm'
-        }`}
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-brand-100/50 lg:top-4 lg:border lg:border-brand-100/60 lg:shadow-[0_8px_32px_rgba(14,165,233,0.10)]'
+            : 'bg-white/90 backdrop-blur-md border-b border-brand-50 lg:top-6 lg:border lg:border-brand-100/40 lg:shadow-sm'
+        } px-5 lg:px-8 py-0 lg:py-3`}
       >
-        <div className="flex justify-between items-center h-12 lg:h-auto">
+        <div className="flex justify-between items-center h-16 lg:h-12">
           {/* Logo */}
           <Link to="/" className="flex items-center shrink-0">
             <img
@@ -227,13 +226,13 @@ const Navbar = () => {
 
             {/* Slide-down menu panel */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-[57px] left-3 right-3 z-50 lg:hidden bg-white rounded-2xl shadow-2xl border border-brand-100/80 overflow-hidden"
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-16 left-0 right-0 z-50 lg:hidden bg-white rounded-b-3xl shadow-2xl border-t border-b border-brand-100/80 overflow-hidden"
             >
-              <div className="p-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+              <div className="p-5 flex flex-col gap-1.5 max-h-[calc(100vh-64px)] overflow-y-auto">
                 {/* Main nav links */}
                 {navLinks.map((item) => {
                   const active = isLinkActive(item.path);

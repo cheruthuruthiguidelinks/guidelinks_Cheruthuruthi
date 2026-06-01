@@ -18,16 +18,13 @@ const TrustedSection = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[180vh]" style={{ position: 'relative' }}>
+    <div ref={containerRef} className="relative h-[180vh] bg-[#0c1a2e] overflow-hidden">
 
-      {/* Deep navy background — creates premium contrast moment */}
-      <div className="absolute inset-0 bg-[#0c1a2e]">
-        {/* Subtle blue glow nodes */}
-        <div className="absolute top-1/4 left-10 w-[450px] h-[450px] bg-sky-500/8 rounded-full blur-[90px]" />
-        <div className="absolute bottom-1/4 right-10 w-[380px] h-[380px] bg-blue-400/6 rounded-full blur-[100px]" />
-        {/* Very subtle grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      </div>
+      {/* Subtle blue glow nodes */}
+      <div className="absolute top-1/4 left-10 w-[450px] h-[450px] bg-sky-500/8 rounded-full blur-[90px]" />
+      <div className="absolute bottom-1/4 right-10 w-[380px] h-[380px] bg-blue-400/6 rounded-full blur-[100px]" />
+      {/* Very subtle grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
       <div className="sticky top-0 h-screen w-full flex items-center px-6 md:px-24 overflow-hidden z-10">
         <div className="max-w-5xl text-left">
@@ -43,8 +40,8 @@ const TrustedSection = () => {
 
           <p className="flex flex-wrap items-center justify-start gap-x-3 gap-y-4 md:gap-x-4 md:gap-y-6">
             {words.map((word, i) => {
-              const start = i / words.length;
-              const end = (i + 1) / words.length;
+              const start = (i / words.length) * 0.75;
+              const end = ((i + 1) / words.length) * 0.75;
               const highlighted = isHighlightWord(word);
               return (
                 <Word

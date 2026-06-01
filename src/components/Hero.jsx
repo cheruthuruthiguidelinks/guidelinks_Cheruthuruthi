@@ -65,7 +65,7 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center relative z-10 pt-16 lg:pt-0">
 
           {/* ═══ LEFT: SCROLL TEXT STAGES ═══ */}
-          <div className="lg:col-span-6 relative h-[420px] flex flex-col justify-center">
+          <div className="lg:col-span-6 relative h-[480px] lg:h-[500px] flex flex-col justify-center">
 
             {/* STAGE 1 — Global Gateways */}
             <motion.div
@@ -80,7 +80,7 @@ const Hero = () => {
                 </span>
               </div>
 
-              <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.08] text-slate-900 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] text-slate-900 tracking-tight">
                 Global<br />
                 Gateways.<br />
                 <span className="text-gradient">Unlimited<br />Potential.</span>
@@ -131,7 +131,7 @@ const Hero = () => {
                 </span>
               </div>
 
-              <h2 className="text-5xl sm:text-6xl font-extrabold leading-[1.08] text-slate-900 tracking-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] text-slate-900 tracking-tight">
                 South India's<br />
                 Top Colleges<br />
                 <span className="text-gradient">At Your Reach.</span>
@@ -162,7 +162,7 @@ const Hero = () => {
                 </span>
               </div>
 
-              <h2 className="text-5xl sm:text-6xl font-extrabold leading-[1.08] text-slate-900 tracking-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] text-slate-900 tracking-tight">
                 The cap fits<br />
                 those who<br />
                 <span className="text-gradient">dare to dream.</span>
