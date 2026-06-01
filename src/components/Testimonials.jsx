@@ -1,35 +1,86 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-react';
 
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Johnson',
-    university: 'University of Toronto',
-    country: 'Canada',
+    name: 'Anagha Krishnan',
+    institution: 'KMC Manipal, Karnataka',
+    badge: 'MBBS · Domestic',
+    location: 'From Thrissur, Kerala',
     rating: 5,
-    text: 'Guidelinks made my dream of studying in Canada a reality. Their team was incredibly supportive throughout the entire visa and admission process.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150'
+    text: 'I always wanted MBBS but had no idea how to get a management quota seat. Guidelinks explained everything — fees, hostel, ranking — no hidden surprises. I am now in Manipal and loving it. The team was like family throughout.',
+    initials: 'AK',
+    bg: 'bg-rose-50',
+    accent: 'text-rose-500',
+    dot: 'bg-rose-400',
   },
   {
     id: 2,
-    name: 'Rahul Patel',
-    university: 'University of Melbourne',
-    country: 'Australia',
+    name: 'Aswin Mohan',
+    institution: 'RV College of Engineering, Bangalore',
+    badge: 'B.Tech CSE · Domestic',
+    location: 'From Palakkad, Kerala',
     rating: 5,
-    text: 'I was overwhelmed by the application process, but their counselors simplified everything. From university selection to finding accommodation, they helped with it all.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150'
+    text: 'Getting into RV College Bangalore was a dream. I came to Guidelinks not knowing anything about Karnataka management quota. They handled the entire process — application, counseling, admission day. Got my seat without any stress.',
+    initials: 'AS',
+    bg: 'bg-blue-50',
+    accent: 'text-blue-500',
+    dot: 'bg-blue-400',
   },
   {
     id: 3,
-    name: 'Emma Williams',
-    university: 'Imperial College London',
-    country: 'UK',
+    name: 'Adarsh Nair',
+    institution: 'University of Melbourne, Australia',
+    badge: 'MS Computer Science · Abroad',
+    location: 'From Kochi, Kerala',
     rating: 5,
-    text: 'The IELTS coaching provided by Guidelinks was phenomenal. It gave me the confidence I needed to score well and secure my admission in the UK.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150'
-  }
+    text: 'Guidelinks made Australia possible for me. My SOP, LOR drafts, visa preparation — they guided every single step. Even after I landed in Melbourne they were available on WhatsApp for support. Genuinely felt cared for.',
+    initials: 'AD',
+    bg: 'bg-sky-50',
+    accent: 'text-sky-500',
+    dot: 'bg-sky-400',
+  },
+  {
+    id: 4,
+    name: 'Thejaswini V.',
+    institution: 'SDM College of Dental Sciences, Coimbatore',
+    badge: 'BDS · Domestic',
+    location: 'From Kozhikode, Kerala',
+    rating: 5,
+    text: 'I came to Coimbatore for BDS and never expected it to be this smooth. The admission, hostel, and orientation were all coordinated by the Guidelinks team. Even my parents felt comfortable because they got regular updates.',
+    initials: 'TV',
+    bg: 'bg-violet-50',
+    accent: 'text-violet-500',
+    dot: 'bg-violet-400',
+  },
+  {
+    id: 5,
+    name: 'Amal Raj',
+    institution: 'Deakin University, Australia',
+    badge: 'MBA · Abroad',
+    location: 'From Kannur, Kerala',
+    rating: 5,
+    text: 'I was skeptical about consultancies but Guidelinks completely changed my mind. No fake promises, very transparent about costs. My student visa got approved in 3 weeks. Now studying MBA in Melbourne. Best decision of my life.',
+    initials: 'AR',
+    bg: 'bg-emerald-50',
+    accent: 'text-emerald-500',
+    dot: 'bg-emerald-400',
+  },
+  {
+    id: 6,
+    name: 'Vishnu Prasad',
+    institution: 'PES University, Bangalore',
+    badge: 'B.Tech ECE · Domestic',
+    location: 'From Thrissur, Kerala',
+    rating: 5,
+    text: 'PES University Bangalore was my first and only choice. I reached Guidelinks in June and they got me confirmed within two weeks. 100% transparent — showed me the fee receipt, college rank, everything. No middle-man fees hidden.',
+    initials: 'VP',
+    bg: 'bg-amber-50',
+    accent: 'text-amber-500',
+    dot: 'bg-amber-400',
+  },
 ];
 
 const Testimonials = () => {
@@ -42,7 +93,7 @@ const Testimonials = () => {
     timerRef.current = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-    }, 6000);
+    }, 7000);
   };
 
   const stopAutoScroll = () => {
@@ -54,66 +105,72 @@ const Testimonials = () => {
     return () => stopAutoScroll();
   }, []);
 
-  const nextSlide = () => {
+  const goTo = (index) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
     startAutoScroll();
+  };
+
+  const nextSlide = () => {
     setDirection(1);
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    startAutoScroll();
   };
 
   const prevSlide = () => {
-    startAutoScroll();
     setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    startAutoScroll();
   };
 
-  const handleDragEnd = (event, info) => {
+  const handleDragEnd = (_, info) => {
     if (info.offset.x < -50) nextSlide();
     else if (info.offset.x > 50) prevSlide();
   };
 
+  const t = testimonials[currentIndex];
+
   const slideVariants = {
-    enter: (dir) => ({ x: dir > 0 ? 80 : -80, opacity: 0, scale: 0.97 }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -80 : 80,
-      opacity: 0,
-      scale: 0.97,
-      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
-    })
+    enter: (dir) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+    center: { x: 0, opacity: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+    exit: (dir) => ({ x: dir > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }),
   };
 
   return (
-    <section id="testimonials" className="py-28 bg-brand-50 relative overflow-hidden">
+    <section id="testimonials" className="py-28 bg-white relative overflow-hidden">
 
-      {/* Decorative blobs */}
-      <div className="absolute -left-32 top-20 w-[500px] h-[500px] bg-brand-100/50 rounded-full blur-[90px] pointer-events-none" />
-      <div className="absolute -right-32 bottom-20 w-[400px] h-[400px] bg-sky-50/70 rounded-full blur-[80px] pointer-events-none" />
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-100 to-transparent" />
 
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
 
         {/* Header */}
         <div className="text-center mb-16">
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-xs font-bold uppercase tracking-[0.25em] text-brand-600 mb-3"
           >
-            Alumni Reviews
+            Real Students · Real Results
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight"
+            className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-3 tracking-tight"
           >
-            Student <span className="text-gradient">Success Stories</span>
+            What Our Students <span className="text-gradient">Say</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="text-slate-500 text-sm font-medium"
+          >
+            From Kerala to Bangalore, Coimbatore, Melbourne and beyond.
+          </motion.p>
         </div>
 
         {/* Carousel */}
@@ -122,7 +179,7 @@ const Testimonials = () => {
           onMouseEnter={stopAutoScroll}
           onMouseLeave={startAutoScroll}
         >
-          <div className="overflow-hidden min-h-[320px] flex items-center justify-center py-4">
+          <div className="overflow-hidden">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentIndex}
@@ -133,43 +190,52 @@ const Testimonials = () => {
                 exit="exit"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.3}
+                dragElastic={0.2}
                 onDragEnd={handleDragEnd}
-                className="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_4px_24px_rgba(14,165,233,0.08)] border border-brand-100/70 relative cursor-grab active:cursor-grabbing w-full select-none"
+                className="cursor-grab active:cursor-grabbing select-none"
               >
-                {/* Quote icon */}
-                <Quote className="absolute top-7 right-7 w-12 h-12 text-brand-100/80 pointer-events-none" />
+                <div className="bg-white rounded-3xl border border-slate-100 shadow-[0_2px_20px_rgba(14,165,233,0.07)] overflow-hidden">
+                  
+                  {/* Top accent strip */}
+                  <div className={`h-1.5 w-full ${t.dot}`} />
 
-                <div className="flex flex-col md:flex-row gap-7 md:gap-9 items-center md:items-start text-center md:text-left">
+                  <div className="p-8 md:p-10">
+                    <div className="flex flex-col md:flex-row gap-7 md:gap-10">
 
-                  {/* Avatar */}
-                  <div className="shrink-0 relative">
-                    <div className="absolute -inset-1 bg-gradient-to-tr from-brand-300 to-brand-500 rounded-full blur-[5px] opacity-30" />
-                    <img
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].name}
-                      draggable="false"
-                      className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md relative z-10"
-                    />
-                  </div>
+                      {/* Left — Avatar + info */}
+                      <div className="flex md:flex-col items-center md:items-start gap-4 md:gap-3 md:w-48 shrink-0">
+                        {/* Initials avatar */}
+                        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${t.bg} flex items-center justify-center shrink-0`}>
+                          <span className={`text-xl md:text-2xl font-extrabold ${t.accent}`}>{t.initials}</span>
+                        </div>
 
-                  {/* Text */}
-                  <div className="flex-1">
-                    <div className="flex justify-center md:justify-start gap-1 mb-4">
-                      {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-brand-400 text-brand-400" />
-                      ))}
-                    </div>
+                        <div>
+                          <h4 className="text-base font-bold text-slate-900 leading-tight">{t.name}</h4>
+                          <p className={`text-xs font-bold mt-1 ${t.accent}`}>{t.badge}</p>
+                          <p className="text-xs text-slate-400 font-medium mt-0.5 flex items-center gap-1">
+                            <MapPin className="w-3 h-3 shrink-0" />
+                            {t.location}
+                          </p>
+                        </div>
+                      </div>
 
-                    <p className="text-lg md:text-xl text-slate-600 italic font-medium leading-relaxed mb-5">
-                      "{testimonials[currentIndex].text}"
-                    </p>
+                      {/* Right — Review */}
+                      <div className="flex-1 flex flex-col justify-between">
+                        {/* Stars */}
+                        <div className="flex gap-1 mb-4">
+                          {[...Array(t.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                          ))}
+                        </div>
 
-                    <div>
-                      <h4 className="text-base font-bold text-slate-900">{testimonials[currentIndex].name}</h4>
-                      <p className="text-sm text-brand-600 font-semibold tracking-wide mt-0.5">
-                        {testimonials[currentIndex].university} · {testimonials[currentIndex].country}
-                      </p>
+                        <p className="text-slate-700 text-base md:text-lg leading-relaxed font-medium italic flex-1">
+                          "{t.text}"
+                        </p>
+
+                        <p className="mt-5 text-xs text-slate-400 font-semibold border-t border-slate-100 pt-4">
+                          {t.institution}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -177,36 +243,45 @@ const Testimonials = () => {
             </AnimatePresence>
           </div>
 
-          {/* Navigation */}
-          <div className="flex justify-center items-center gap-4 mt-6">
+          {/* Controls */}
+          <div className="flex items-center justify-between mt-7">
+            {/* Prev */}
             <button
               onClick={prevSlide}
-              className="w-11 h-11 rounded-full bg-white border border-brand-100 flex items-center justify-center text-brand-600 shadow-sm hover:bg-brand-50 hover:border-brand-200 transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-brand-600 hover:border-brand-200 transition-all duration-200 shadow-sm cursor-pointer"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4.5 h-4.5" />
             </button>
 
             {/* Dot indicators */}
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
+            <div className="flex items-center gap-2">
+              {testimonials.map((item, i) => (
                 <button
                   key={i}
-                  onClick={() => { setDirection(i > currentIndex ? 1 : -1); setCurrentIndex(i); startAutoScroll(); }}
-                  className={`rounded-full transition-all duration-300 ${
+                  onClick={() => goTo(i)}
+                  className={`rounded-full transition-all duration-300 cursor-pointer ${
                     i === currentIndex
-                      ? 'w-6 h-2 bg-brand-500'
-                      : 'w-2 h-2 bg-brand-200 hover:bg-brand-300'
+                      ? `w-8 h-2.5 ${item.dot}`
+                      : 'w-2.5 h-2.5 bg-slate-200 hover:bg-slate-300'
                   }`}
                 />
               ))}
             </div>
 
+            {/* Next */}
             <button
               onClick={nextSlide}
-              className="w-11 h-11 rounded-full bg-white border border-brand-100 flex items-center justify-center text-brand-600 shadow-sm hover:bg-brand-50 hover:border-brand-200 transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-brand-600 hover:border-brand-200 transition-all duration-200 shadow-sm cursor-pointer"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4.5 h-4.5" />
             </button>
+          </div>
+
+          {/* Student counter */}
+          <div className="text-center mt-5">
+            <p className="text-xs text-slate-400 font-medium">
+              {currentIndex + 1} of {testimonials.length} reviews
+            </p>
           </div>
         </div>
       </div>
