@@ -88,6 +88,7 @@ const AdmissionSouthIndia = ({ showHero = true }) => {
                 <img 
                   src={city.image} 
                   alt={city.name} 
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-transparent to-transparent z-10" />

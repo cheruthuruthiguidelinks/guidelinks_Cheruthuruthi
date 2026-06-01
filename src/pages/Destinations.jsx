@@ -93,6 +93,7 @@ const Destinations = () => {
                 <img 
                   src={dest.image} 
                   alt={dest.name} 
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-900/60 via-transparent to-transparent" />
