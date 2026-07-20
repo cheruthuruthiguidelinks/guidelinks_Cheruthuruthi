@@ -3,10 +3,8 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Mail, Phone, MapPin, Send, Sparkles } from 'lucide-react';
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
-import { XCircle } from "lucide-react";
+import { Loader2,XCircle,CheckCircle2 } from "lucide-react";
 
 
 
@@ -50,9 +48,6 @@ const Contact = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState("idle");
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const [result, setResult] = useState("");
 
   const onSubmit = async (event) => {
   event.preventDefault();
@@ -303,7 +298,23 @@ if (status === "error") {
                   </div>
                 </div>
                 <div>
+                <div>
+  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+    Phone Number
+  </label>
+
+  <input
+    type="tel"
+    name="phone"
+    placeholder="enter number"
+    required
+    pattern="^\+?[0-9\s\-()]{7,20}$"
+    className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-800"
+  />
+</div>
+<br></br>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Academic Program Interest</label>
+                  
                   <select 
                   name='program'
                     className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-700"
