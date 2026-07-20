@@ -2,6 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Mail, Phone, MapPin, Send, Sparkles } from 'lucide-react';
+import { useState } from "react";
+
+
+
+  
 
 const PageHero = ({ title, subtitle }) => (
   <div className="relative pt-36 pb-20 overflow-hidden bg-brand-50">
@@ -37,6 +42,23 @@ const PageHero = ({ title, subtitle }) => (
 );
 
 const Contact = () => {
+
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("access_key", "7dc262ea-e321-4ee4-8b29-03d44e4c56ef");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    setResult(data.success ? "Success!" : "Error");
+  }
+
   return (
     <>
       <Helmet>
@@ -112,12 +134,13 @@ const Contact = () => {
              {/* Sparkle decorative node */}
              <div className="absolute top-6 right-6 text-brand-500/10"><Sparkles className="w-10 h-10" /></div>
 
-             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+             <form className="space-y-6" onSubmit={onSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
                     <input 
                       type="text" 
+                      name='name'
                       className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-800" 
                       placeholder="John Doe" 
                       required
@@ -127,6 +150,7 @@ const Contact = () => {
                     <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Email Address</label>
                     <input 
                       type="email" 
+                      name='email'
                       className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-800" 
                       placeholder="john@example.com" 
                       required
@@ -136,6 +160,7 @@ const Contact = () => {
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Academic Program Interest</label>
                   <select 
+                  name='program'
                     className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-700"
                   >
                     <option>Select Option</option>
@@ -150,6 +175,7 @@ const Contact = () => {
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Message</label>
                   <textarea 
                     rows="4" 
+                    name='message'
                     className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-800" 
                     placeholder="How can our counselors help you?" 
                     required

@@ -31,7 +31,7 @@ const Hero = () => {
 
   // Left text stage animations
   const op1 = useTransform(scrollYProgress, [0, 0.06, 0.24, 0.32], [1, 1, 1, 0]);
-  const y1  = useTransform(scrollYProgress, [0, 0.06, 0.24, 0.32], [20, 0, 0, -20]);
+  const y1  = useTransform(scrollYProgress, [0, 0.06, 0.24, 0.32], [10, 0, 0, -10]);
 
   const op2 = useTransform(scrollYProgress, [0.33, 0.41, 0.58, 0.66], [0, 1, 1, 0]);
   const y2  = useTransform(scrollYProgress, [0.33, 0.41, 0.58, 0.66], [20, 0, 0, -20]);
