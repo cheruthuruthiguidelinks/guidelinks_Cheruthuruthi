@@ -1,103 +1,140 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const TrustedSection = () => {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end']
+    offset: ["start start", "end end"],
   });
 
-  const text = "Trusted since 2019, secured the future of 10,000+ students through professional consultancy.";
+  const hintOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 1, 1, 0]
+  );
+
+  const text =
+    "Trusted since 2019, secured the future of 10,000+ students through professional consultancy.";
+
   const words = text.split(" ");
 
+  const highlightedWords = new Set([
+    "10000+",
+    "students",
+    "professional",
+    "consultancy",
+  ]);
+
   const isHighlightWord = (word) => {
-    const clean = word.toLowerCase().replace(/[^a-z0-9+]/g, '');
-    return ['10000+', 'students', 'professional', 'consultancy'].includes(clean);
+    const clean = word
+      .toLowerCase()
+      .replace(/[^a-z0-9+]/g, "");
+
+    return highlightedWords.has(clean);
   };
 
   return (
-    <div ref={containerRef} className="relative h-[180vh] bg-[#0c1a2e]">
+    <section
+      ref={containerRef}
+      className="relative h-[220vh] bg-[#0c1a2e]"
+    >
+      {/* Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-10 w-[450px] h-[450px] bg-sky-500/10 rounded-full blur-[100px]" />
 
-      {/* Background glow and grids container (safely clips overflow) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Subtle blue glow nodes */}
-        <div className="absolute top-1/4 left-10 w-[450px] h-[450px] bg-sky-500/8 rounded-full blur-[90px]" />
-        <div className="absolute bottom-1/4 right-10 w-[380px] h-[380px] bg-blue-400/6 rounded-full blur-[100px]" />
-        {/* Very subtle grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        <div className="absolute bottom-1/4 right-10 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]" />
+
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:48px_48px]" />
       </div>
 
-      <div className="sticky top-0 h-screen w-full flex items-center px-6 md:px-24 overflow-hidden z-10">
-        <div className="max-w-5xl text-left">
-          {/* Section subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-[0.3em] text-sky-400 font-bold mb-6 block"
-          >
-            Our Track Record
-          </motion.p>
+      <div className="sticky top-0 h-screen flex items-center px-6 md:px-24 overflow-hidden">
 
-          <p className="flex flex-wrap items-center justify-start gap-x-3 gap-y-4 md:gap-x-4 md:gap-y-6">
-            {words.map((word, i) => {
-              const start = (i / words.length) * 0.75;
-              const end = ((i + 1) / words.length) * 0.75;
-              const highlighted = isHighlightWord(word);
+        <div className="max-w-6xl">
+
+          <p className="text-xs uppercase tracking-[0.35em] text-sky-400 font-bold mb-8">
+            OUR TRACK RECORD
+          </p>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-5">
+
+            {words.map((word, index) => {
+
+              const start = index / words.length;
+              const end = (index + 1) / words.length;
+
               return (
                 <Word
-                  key={i}
+                  key={index}
                   progress={scrollYProgress}
                   range={[start, end]}
-                  isHighlighted={highlighted}
+                  isHighlighted={isHighlightWord(word)}
                 >
                   {word}
                 </Word>
               );
             })}
-          </p>
+
+          </div>
+
         </div>
 
-        {/* Scroll progress hint */}
-        <div className="absolute bottom-16 left-0 right-0 flex justify-center items-center flex-col gap-3 pointer-events-none">
+        {/* Scroll Indicator */}
+
+        <div className="absolute bottom-16 left-0 right-0 flex flex-col items-center gap-4">
+
           <motion.div
-            style={{ opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]) }}
+            style={{ opacity: hintOpacity }}
             className="flex items-center gap-4"
           >
-            <div className="w-8 h-px bg-sky-400/25" />
-            <span className="text-[9px] uppercase tracking-[0.4em] text-sky-300/60 font-semibold font-mono">
-              Scroll to Read
+            <div className="w-10 h-px bg-sky-400/30" />
+
+            <span className="text-[10px] uppercase tracking-[0.35em] text-sky-300/70">
+              Scroll To Read
             </span>
-            <div className="w-8 h-px bg-sky-400/25" />
+
+            <div className="w-10 h-px bg-sky-400/30" />
           </motion.div>
 
-          <div className="w-full max-w-xs h-[2px] bg-white/5 rounded-full overflow-hidden">
+          <div className="w-72 h-[2px] bg-white/10 overflow-hidden rounded-full">
             <motion.div
               style={{ scaleX: scrollYProgress }}
-              className="h-full bg-gradient-to-r from-sky-500 to-blue-400 origin-left"
+              className="origin-left h-full bg-gradient-to-r from-sky-500 to-blue-400"
             />
           </div>
+
         </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
 const Word = ({ children, progress, range, isHighlighted }) => {
-  const opacity = useTransform(progress, range, [0.08, 1]);
+
   const color = useTransform(
     progress,
     range,
-    ['#1e3a5f', isHighlighted ? '#38bdf8' : '#ffffff']
+    [
+      "#2e3a52", // brighter initial color
+      isHighlighted ? "#38BDF8" : "#FFFFFF",
+    ]
   );
-  const scale = useTransform(progress, range, [0.98, 1]);
+
+  const scale = useTransform(
+    progress,
+    range,
+    [0.98, 1]
+  );
 
   return (
     <motion.span
-      style={{ opacity, color, scale, willChange: 'opacity, color, scale' }}
-      className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight"
+      style={{
+        color,
+        scale,
+      }}
+      className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-tight"
     >
       {children}
     </motion.span>
