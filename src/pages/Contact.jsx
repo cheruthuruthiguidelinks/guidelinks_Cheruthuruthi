@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Mail, Phone, MapPin, Send, Sparkles } from 'lucide-react';
 import { useState } from "react";
+import { CheckCircle2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
+import { XCircle } from "lucide-react";
 
 
 
@@ -43,22 +47,163 @@ const PageHero = ({ title, subtitle }) => (
 
 const Contact = () => {
 
+  const navigate = useNavigate();
+  const [status, setStatus] = useState("idle");
+
+  const [submitted, setSubmitted] = useState(false);
+
   const [result, setResult] = useState("");
 
   const onSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    formData.append("access_key", "7dc262ea-e321-4ee4-8b29-03d44e4c56ef");
+  event.preventDefault();
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
+  setStatus("loading");
+
+  const formData = new FormData(event.target);
+
+  formData.append(
+    "access_key",
+    '7dc262ea-e321-4ee4-8b29-03d44e4c56ef'
+  );
+
+  formData.append(
+    "subject",
+    "New Inquiry - Guidelinks International"
+  );
+
+  try {
+    const response = await fetch(
+      "https://api.web3forms.com/submit",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const data = await response.json();
-    setResult(data.success ? "Success!" : "Error");
-  }
 
+    if (data.success) {
+      event.target.reset();
+
+      setStatus("success");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+    } else {
+      setStatus("error");
+    }
+  } catch (error) {
+    console.error(error);
+    setStatus("error");
+  }
+};
+
+if (status === "success") {
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-brand-50 px-6">
+
+      <motion.div
+        initial={{ opacity: 0, scale: .9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-[32px] shadow-xl p-12 max-w-lg text-center"
+      >
+
+        <CheckCircle2
+          className="mx-auto text-green-500"
+          size={72}
+        />
+
+        <h2 className="text-4xl font-bold mt-8">
+          Thank You!
+        </h2>
+
+        <p className="mt-5 text-gray-500 leading-8">
+          Your inquiry has been received successfully.
+          <br />
+          Our education counselors will contact you within
+          <strong> 24 hours.</strong>
+        </p>
+
+        <button
+          onClick={() => navigate("/")}
+          className="mt-8 bg-brand-600 hover:bg-brand-700 text-white px-8 py-3 rounded-xl font-semibold transition"
+        >
+          Return Home
+        </button>
+
+        <p className="mt-5 text-sm text-gray-400">
+          Redirecting automatically...
+        </p>
+
+        <div className="mt-6 h-2 bg-gray-200 rounded-full overflow-hidden">
+
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{
+              duration: 5,
+              ease: "linear",
+            }}
+            className="h-full bg-brand-600"
+          />
+
+        </div>
+
+      </motion.div>
+
+    </section>
+  );
+}
+if (status === "error") {
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-brand-50 px-6">
+
+      <motion.div
+        initial={{ opacity: 0, scale: .9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-[32px] shadow-xl p-12 max-w-lg text-center"
+      >
+
+        <XCircle
+          className="mx-auto text-red-500"
+          size={72}
+        />
+
+        <h2 className="text-4xl font-bold mt-8">
+          Submission Failed
+        </h2>
+
+        <p className="mt-5 text-gray-500 leading-8">
+          We couldn't send your inquiry at the moment.
+          <br />
+          Please try again in a few minutes or contact us using
+          the phone number or email provided.
+        </p>
+
+        <div className="flex gap-4 mt-8">
+
+          <button
+            onClick={() => setStatus("idle")}
+            className="flex-1 py-3 border border-brand-600 text-brand-600 rounded-xl font-semibold hover:bg-brand-50 transition"
+          >
+            Try Again
+          </button>
+
+          <button
+            onClick={() => navigate("/")}
+            className="flex-1 py-3 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition"
+          >
+            Return Home
+          </button>
+
+        </div>
+
+      </motion.div>
+
+    </section>
+  );
+}
   return (
     <>
       <Helmet>
@@ -142,7 +287,7 @@ const Contact = () => {
                       type="text" 
                       name='name'
                       className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-800" 
-                      placeholder="John Doe" 
+                      placeholder="Enter name" 
                       required
                     />
                   </div>
@@ -152,7 +297,7 @@ const Contact = () => {
                       type="email" 
                       name='email'
                       className="w-full px-4 py-3.5 bg-white/50 border border-brand-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500/15 focus:border-brand-500 focus:bg-white transition-all text-sm font-semibold text-gray-800" 
-                      placeholder="john@example.com" 
+                      placeholder="Enter email" 
                       required
                     />
                   </div>
@@ -181,15 +326,25 @@ const Contact = () => {
                     required
                   />
                 </div>
-                <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit" 
-                  className="w-full py-4 bg-brand-900 hover:bg-brand-650 text-white rounded-2xl font-bold text-xs tracking-wider uppercase transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  Send Message
-                  <Send className="w-3.5 h-3.5" />
-                </motion.button>
+                <motion.button
+  whileHover={status !== "loading" ? { scale: 1.02 } : {}}
+  whileTap={status !== "loading" ? { scale: 0.98 } : {}}
+  type="submit"
+  disabled={status === "loading"}
+  className="w-full py-4 bg-brand-900 text-white rounded-2xl font-bold uppercase tracking-wider flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+>
+  {status === "loading" ? (
+    <>
+      <Loader2 className="animate-spin w-5 h-5" />
+      Sending...
+    </>
+  ) : (
+    <>
+      Send Message
+      <Send className="w-4 h-4" />
+    </>
+  )}
+</motion.button>
              </form>
           </motion.div>
 
