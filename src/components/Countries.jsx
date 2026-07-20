@@ -1,6 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import canImg from "../assets/destination/canada.jpeg"
+import ukImg from "../assets/destination/uk.jpeg"
+import ausImg from "../assets/destination/aus.jpeg"
+import gerImg from "../assets/destination/gerImg.jpg"
 
 const countries = [
   {
@@ -8,29 +12,25 @@ const countries = [
     flag: '🇨🇦',
     topUniversities: '100+',
     students: '500+',
-    image: 'https://images.unsplash.com/photo-1549880816-0e10cced57ae?auto=format&fit=crop&q=80&w=600'
-  },
+    image:canImg  },
   {
     name: 'United Kingdom',
     flag: '🇬🇧',
     topUniversities: '90+',
     students: '450+',
-    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=600'
-  },
+    image:ukImg  },
   {
     name: 'Australia',
     flag: '🇦🇺',
     topUniversities: '40+',
     students: '300+',
-    image: 'https://images.unsplash.com/photo-1523482580691-628d3bdbe0cc?auto=format&fit=crop&q=80&w=600'
-  },
+    image:ausImg  },
   {
     name: 'Germany',
     flag: '🇩🇪',
     topUniversities: '50+',
     students: '200+',
-    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&q=80&w=600'
-  }
+    image:gerImg  }
 ];
 
 const containerVariants = {
