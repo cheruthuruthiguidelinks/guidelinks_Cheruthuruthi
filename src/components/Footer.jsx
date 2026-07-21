@@ -51,8 +51,12 @@ const Footer = () => {
             <ul className="space-y-3.5">
               {[
                 { name: 'Home', path: '/' },
+                { name: 'About', path: '/about' },
+                { name: 'Services', path: '/services' },
+                { name: 'Institutions', path: '/institutions' },
                 { name: 'Destinations', path: '/destinations' },
                 { name: 'Admissions South India', path: '/admission-south-india' },
+                { name: 'Contact', path: '/contact' },
                 { name: 'Blog', path: '/blog' }
               ].map((link) => (
                 <li key={link.name}>
@@ -74,15 +78,21 @@ const Footer = () => {
               Destinations
             </h4>
             <ul className="space-y-3.5">
-              {['Study in UK', 'Study in Canada', 'Study in Australia', 'Study in USA', 'Study in Germany'].map((link) => (
+              {[
+                'Study in UK',
+                'Study in Canada',
+                'Study in Australia',
+                'Study in USA',
+                'Study in Germany'
+              ].map((link) => (
                 <li key={link}>
-                  <a
-                    href="#"
+                  <Link
+                    to="/destinations"
                     className="text-slate-500 hover:text-sky-400 transition-colors duration-300 flex items-center gap-2.5 text-sm font-semibold"
                   >
                     <span className="w-1 h-1 rounded-full bg-brand-500/50" />
                     {link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -103,15 +113,15 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-sky-400 shrink-0" />
-                <span className="text-slate-500 hover:text-slate-200 transition-colors cursor-pointer">
+                <a href="tel:+918590090969" className="text-slate-500 hover:text-slate-200 transition-colors">
                   +91 85900 90969
-                </span>
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-                <span className="text-slate-500 hover:text-slate-200 transition-colors cursor-pointer">
+                <a href="mailto:info@guidelinks.in" className="text-slate-500 hover:text-slate-200 transition-colors">
                   info@guidelinks.in
-                </span>
+                </a>
               </div>
             </div>
           </div>
@@ -121,12 +131,12 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/5 text-slate-600 text-xs font-semibold flex flex-col md:flex-row justify-between items-center gap-5">
           <p>&copy; {new Date().getFullYear()} Guidelinks International. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-sky-400 transition-colors duration-300 flex items-center gap-1">
+            <Link to="/contact" className="hover:text-sky-400 transition-colors duration-300 flex items-center gap-1">
               Privacy Policy <ArrowUpRight className="w-3 h-3" />
-            </a>
-            <a href="#" className="hover:text-sky-400 transition-colors duration-300 flex items-center gap-1">
+            </Link>
+            <Link to="/contact" className="hover:text-sky-400 transition-colors duration-300 flex items-center gap-1">
               Terms of Service <ArrowUpRight className="w-3 h-3" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -5,9 +5,7 @@ import Footer from './components/Footer';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
-
-// Shared lenis instance so Hero can query it for scroll-to
-export const lenisRef = { current: null };
+import { lenisRef } from './utils/lenis';
 
 const Layout = () => {
   const { scrollYProgress } = useScroll();

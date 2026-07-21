@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { GraduationCap, Building2, ShieldCheck, CheckCircle, MapPin } from 'lucide-react';
+import coimImg from '../assets/destination/coimbature1.jpeg'
+import kochiImg from '../assets/destination/kochi1.jpeg'
+import bngImg from '../assets/destination/bangalore.jpeg'
 
 const cities = [
   {
@@ -9,21 +12,21 @@ const cities = [
     state: "Tamil Nadu",
     speciality: "Engineering & Medical Hub",
     count: "40+ Partner Colleges",
-    image: "https://images.unsplash.com/photo-1590490359854-dfba19688d70?auto=format&fit=crop&q=80&w=800"
+    image: coimImg
   },
   {
     name: "Bangalore",
     state: "Karnataka",
     speciality: "Tech & Management Excellence",
     count: "100+ Partner Colleges",
-    image: "https://images.unsplash.com/photo-1597041066774-fa8664ec26ed?auto=format&fit=crop&q=80&w=800"
+    image: bngImg
   },
   {
     name: "Kochi",
     state: "Kerala",
     speciality: "Professional Course Center",
     count: "25+ Partner Colleges",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&q=80&w=800"
+    image: kochiImg
   }
 ];
 

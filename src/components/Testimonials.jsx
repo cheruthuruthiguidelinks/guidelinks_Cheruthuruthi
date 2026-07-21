@@ -88,22 +88,22 @@ const Testimonials = () => {
   const [direction, setDirection] = useState(0);
   const timerRef = useRef(null);
 
-  const startAutoScroll = () => {
+  const stopAutoScroll = React.useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  }, []);
+
+  const startAutoScroll = React.useCallback(() => {
     stopAutoScroll();
     timerRef.current = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
     }, 7000);
-  };
-
-  const stopAutoScroll = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-  };
+  }, [stopAutoScroll]);
 
   useEffect(() => {
     startAutoScroll();
     return () => stopAutoScroll();
-  }, []);
+  }, [startAutoScroll, stopAutoScroll]);
 
   const goTo = (index) => {
     setDirection(index > currentIndex ? 1 : -1);

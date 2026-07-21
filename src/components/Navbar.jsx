@@ -10,17 +10,19 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownTimer = useRef(null);
   const location = useLocation();
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
+    setIsOpen(false);
+    setDropdownOpen(false);
+  }
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    setIsOpen(false);
-    setDropdownOpen(false);
-  }, [location.pathname]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -35,17 +37,16 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Courses', path: '/courses' },
-    
     { name: 'Services', path: '/services' },
+    { name: 'Institutions', path: '/institutions' },
     { name: 'Team', path: '/team' },
- 
     { name: 'Predictor', path: '/college-predictor' },
     { name: 'About', path: '/about' },
-    // { name: 'Contact', path: '/contact' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   const destinationLinks = [
-    { name: 'Study in India', path: '/study-india' },
+    // { name: 'Study in India', path: '/study-india' },
     { name: 'Study Abroad', path: '/study-abroad' },
     { name: 'All Destinations', path: '/destinations' },
     { name: 'Domestic Admissions', path: '/admission-south-india' },

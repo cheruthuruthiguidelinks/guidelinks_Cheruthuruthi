@@ -13,6 +13,7 @@ import StudyIndia from './pages/StudyIndia';
 import StudyAbroad from './pages/StudyAbroad';
 import Contact from './pages/Contact';
 import Team from './pages/Team';
+import Institutions from './pages/Institutions';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="courses" element={<Courses />} />
           <Route path="services" element={<ServicesPage />} />
+          <Route path="institutions" element={<Institutions />} />
           <Route path="college-predictor" element={<CollegePredictor />} />
           <Route path="study-india" element={<StudyIndia />} />
           <Route path="study-abroad" element={<StudyAbroad />} />
