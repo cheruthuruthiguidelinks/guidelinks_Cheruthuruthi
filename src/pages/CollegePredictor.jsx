@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Sparkles, Mail } from 'lucide-react';
 
@@ -36,12 +36,81 @@ const PageHero = ({ title, subtitle }) => (
 );
 
 const CollegePredictor = () => {
+  const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (status !== 'success' && status !== 'error') return undefined;
+
+    const timeout = window.setTimeout(() => setStatus('idle'), 5000);
+    return () => window.clearTimeout(timeout);
+  }, [status]);
+
+  const handleNotify = async (event) => {
+    event.preventDefault();
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setErrorMessage('The notification form is not configured yet. Please try again later.');
+      setStatus('error');
+      return;
+    }
+
+    setStatus('loading');
+    setErrorMessage('');
+
+    const formData = new FormData(event.target);
+    formData.append('access_key', accessKey);
+    formData.append('subject', 'College Predictor – Notify Me Request');
+    formData.append('from_name', 'Guidelinks International');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        event.target.reset();
+        setStatus('success');
+      } else {
+        setErrorMessage(data.message || 'We couldn’t submit your request. Please try again.');
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMessage('Unable to connect. Please check your internet connection and try again.');
+      setStatus('error');
+    }
+  };
+
   return (
     <>
       <Helmet>
         <title>AI College Predictor | Guidelinks International</title>
         <meta name="description" content="Predict your chances of admission into top tier institutions with our advanced AI college predictor tool." />
       </Helmet>
+
+      <AnimatePresence>
+        {(status === 'success' || status === 'error') && (
+          <motion.div
+            initial={{ opacity: 0, y: -16, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.96 }}
+            role={status === 'error' ? 'alert' : 'status'}
+            className={`fixed top-6 left-1/2 z-[500] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl px-5 py-4 text-center text-sm font-semibold shadow-xl ${
+              status === 'success'
+                ? 'bg-emerald-600 text-white'
+                : 'bg-red-600 text-white'
+            }`}
+          >
+            {status === 'success'
+              ? 'Thank you. We’ll notify you as soon as the College Predictor is available.'
+              : errorMessage}
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       <PageHero 
         title="College Predictor" 
@@ -73,13 +142,14 @@ const CollegePredictor = () => {
 
           {/* Premium Email form */}
           <form 
-            onSubmit={(e) => e.preventDefault()} 
+            onSubmit={handleNotify}
             className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto w-full border border-brand-500/5 p-2 rounded-2xl bg-white/50 backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 px-3 flex-1">
               <Mail className="w-5 h-5 text-gray-400 shrink-0" />
               <input 
                 type="email" 
+                name="email"
                 placeholder="Enter your email address" 
                 className="w-full text-sm py-2 bg-transparent text-gray-800 focus:outline-none placeholder-gray-400 font-semibold"
                 required
@@ -87,9 +157,10 @@ const CollegePredictor = () => {
             </div>
             <button 
               type="submit" 
-              className="px-6 py-3 bg-brand-900 hover:bg-brand-650 text-white rounded-xl font-bold text-xs tracking-wider uppercase transition-colors shadow-md cursor-pointer"
+              disabled={status === 'loading'}
+              className="px-6 py-3 bg-brand-900 hover:bg-brand-650 text-white rounded-xl font-bold text-xs tracking-wider uppercase transition-colors shadow-md cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Get Notified
+              {status === 'loading' ? 'Submitting...' : 'Get Notified'}
             </button>
           </form>
         </motion.div>
