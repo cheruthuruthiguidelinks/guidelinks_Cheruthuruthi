@@ -358,7 +358,7 @@ const Institutions = () => {
                       Total: {selectedInst.feeStructure.gnm.total}
                     </span>
                   </h4>
-                  <div className="grid grid-cols-3 gap-3 text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
                     {selectedInst.feeStructure.gnm.yearly.map((y, idx) => (
                       <div key={idx} className="bg-white p-3 rounded-xl border border-slate-200">
                         <span className="text-xs text-gray-400 font-bold block mb-1">{y.year}</span>
@@ -376,7 +376,7 @@ const Institutions = () => {
                       Total: {selectedInst.feeStructure.paramedical.total}
                     </span>
                   </h4>
-                  <div className="grid grid-cols-3 gap-3 text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
                     {selectedInst.feeStructure.paramedical.yearly.map((y, idx) => (
                       <div key={idx} className="bg-white p-3 rounded-xl border border-slate-200">
                         <span className="text-xs text-gray-400 font-bold block mb-1">{y.year}</span>
