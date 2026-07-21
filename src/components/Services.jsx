@@ -273,7 +273,7 @@ const Services = () => {
 
           <Link
             to="/contact"
-            className="shrink-0 px-8 py-4 bg-white text-brand-950 font-extrabold rounded-2xl text-xs uppercase tracking-widest hover:bg-sky-50 transition-all shadow-xl hover:scale-105 cursor-pointer relative z-10"
+            className="shrink-0 px-8 py-4 bg-blue text-brand-950 font-extrabold rounded-2xl text-xs uppercase tracking-widest hover:bg-sky-50 transition-all shadow-xl hover:scale-105 cursor-pointer relative z-10"
           >
             Speak With Counselor
           </Link>

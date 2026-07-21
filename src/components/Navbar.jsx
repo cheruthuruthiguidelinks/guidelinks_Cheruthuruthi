@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logos/Guide-links.png';
 
-const Navbar = () => {
+const Navbar = ({ onOpenCallback }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -193,14 +193,19 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
+            <button
+              onClick={onOpenCallback}
+              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-semibold text-xs tracking-wide shadow-md transition-all duration-300 cursor-pointer flex items-center gap-1.5"
+            >
+              <span>Book Callback</span>
+            </button>
+
+            <Link
+              to="/contact"
               className="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full font-semibold text-xs tracking-wide shadow-[0_4px_14px_rgba(14,165,233,0.30)] hover:shadow-[0_6px_20px_rgba(14,165,233,0.40)] transition-all duration-300 cursor-pointer"
             >
               Consult Free
-            </motion.a>
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
