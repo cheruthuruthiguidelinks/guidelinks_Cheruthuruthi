@@ -12,7 +12,7 @@ const CallbackModal = ({ isOpen, onClose }) => {
     const formData = new FormData(e.target);
     formData.append(
       'access_key',
-      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '7dc262ea-e321-4ee4-8b29-03d44e4c56ef'
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY 
     );
     formData.append('subject', 'Urgent Callback Request - Guidelinks Website');
 
@@ -55,8 +55,10 @@ const CallbackModal = ({ isOpen, onClose }) => {
 
           {/* Close Button */}
           <button
+            type="button"
             onClick={handleReset}
-            className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition cursor-pointer z-10"
+            aria-label="Close callback request"
+            className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition cursor-pointer z-20"
           >
             <X className="w-5 h-5" />
           </button>
