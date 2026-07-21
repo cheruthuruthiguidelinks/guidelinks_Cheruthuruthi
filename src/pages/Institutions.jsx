@@ -303,17 +303,23 @@ const Institutions = () => {
       {/* ── Fee Structure Modal ── */}
       <AnimatePresence>
         {selectedInst && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-[2rem] max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 relative p-6 sm:p-10"
-            >
+          <div
+            data-lenis-prevent=""
+            className="fixed inset-0 z-[200] overflow-y-auto overscroll-contain touch-pan-y bg-black/60 backdrop-blur-sm"
+          >
+            <div className="flex min-h-full items-start sm:items-center justify-center p-4 sm:p-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="bg-white rounded-[2rem] max-w-4xl w-full shadow-2xl border border-gray-100 relative p-6 sm:p-10"
+              >
               {/* Modal Close Button */}
               <button
+                type="button"
                 onClick={() => setSelectedInst(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition cursor-pointer"
+                aria-label="Close fee structure"
+                className="absolute top-6 right-6 z-10 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -406,7 +412,8 @@ const Institutions = () => {
                   Proceed to Seat Booking
                 </Link>
               </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>

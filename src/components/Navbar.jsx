@@ -36,7 +36,7 @@ const Navbar = ({ onOpenCallback }) => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Courses', path: '/courses' },
+    // { name: 'Courses', path: '/courses' },
     { name: 'Services', path: '/services' },
     { name: 'Institutions', path: '/institutions' },
     { name: 'Team', path: '/team' },
