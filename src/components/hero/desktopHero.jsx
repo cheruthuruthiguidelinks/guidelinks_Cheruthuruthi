@@ -53,23 +53,6 @@ const DesktopHero = ({
                 Premium counseling for international universities and top-tier domestic colleges — handled end to end by people who genuinely care.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="/contact"
-                  className="group flex items-center gap-2 px-7 py-3.5 bg-brand-600 text-white rounded-full font-semibold text-sm shadow-[0_4px_20px_rgba(14,165,233,0.28)] hover:bg-brand-700 hover:shadow-[0_8px_28px_rgba(14,165,233,0.38)] transition-all duration-300"
-                >
-                  Book Free Counseling
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </a>
-                <a
-                  href="/destinations"
-                  className="flex items-center gap-2 px-7 py-3.5 bg-white text-slate-700 border border-slate-200 rounded-full font-semibold text-sm hover:border-brand-200 hover:bg-brand-50/50 transition-all duration-300"
-                >
-                  <Calendar className="w-4 h-4 text-brand-500" />
-                  Explore Destinations
-                </a>
-              </div>
-
               {/* Live trust pill */}
               <div className="mt-8 flex items-center gap-2.5">
                 <span className="flex h-2 w-2">
@@ -168,6 +151,28 @@ const DesktopHero = ({
             <StageCards activeStage={activeStage} />
           </div>
 
+        </div>
+
+        {/* Persistent hero actions — available in every scroll stage */}
+        <div className="absolute bottom-8 left-0 right-0 z-30 pointer-events-none">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div className="flex flex-wrap gap-3 pointer-events-auto lg:w-1/2">
+              <a
+                href="/contact"
+                className="group flex items-center gap-2 px-7 py-3.5 bg-brand-600 text-white rounded-full font-semibold text-sm shadow-[0_4px_20px_rgba(14,165,233,0.28)] hover:bg-brand-700 hover:shadow-[0_8px_28px_rgba(14,165,233,0.38)] transition-all duration-300"
+              >
+                Book Free Counseling
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </a>
+              <a
+                href="/destinations"
+                className="flex items-center gap-2 px-7 py-3.5 bg-white text-slate-700 border border-slate-200 rounded-full font-semibold text-sm hover:border-brand-200 hover:bg-brand-50/50 transition-all duration-300"
+              >
+                <Calendar className="w-4 h-4 text-brand-500" />
+                Explore Destinations
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
