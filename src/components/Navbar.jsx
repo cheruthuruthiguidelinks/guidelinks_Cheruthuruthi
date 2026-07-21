@@ -42,13 +42,13 @@ const Navbar = ({ onOpenCallback }) => {
     { name: 'Team', path: '/team' },
     { name: 'Predictor', path: '/college-predictor' },
     { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    // { name: 'Contact', path: '/contact' },
   ];
 
   const destinationLinks = [
     // { name: 'Study in India', path: '/study-india' },
-    { name: 'Study Abroad', path: '/study-abroad' },
-    { name: 'All Destinations', path: '/destinations' },
+    // { name: 'Study Abroad', path: '/study-abroad' },
+    { name: 'International Destinations', path: '/destinations' },
     { name: 'Domestic Admissions', path: '/admission-south-india' },
   ];
 

@@ -2,29 +2,34 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ShieldCheck, ChevronRight, GraduationCap } from 'lucide-react';
+import can2Img from '../assets/destination/can3.jpeg'
+import aus2Img from '../assets/destination/aus2.jpg'
+import uk2Img from '../assets/destination/uk2.jpeg'
+import ger2Img from '../assets/destination/ger2.jpeg'
+
 
 const destinations = [
   {
     name: "Canada",
-    image: "https://images.unsplash.com/photo-1549880816-0e10cced57ae?auto=format&fit=crop&q=80&w=800",
+    image: can2Img,
     description: "Unlock stellar educational standards with generous post-graduation work opportunities and a structured pathway to permanent residency.",
     benefits: ["Top Tier Quality of Life", "Multicultural Environments", "Favorable PR Prospects"]
   },
   {
     name: "United Kingdom",
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=800",
+    image:uk2Img,
     description: "Study in historical institutions globally recognized for academic rigour and take advantage of fast-tracked one-year Masters programs.",
     benefits: ["Rich Academic Heritage", "Universal Degree Recognition", "1-Year Fast-track Masters"]
   },
   {
     name: "Australia",
-    image: "https://images.unsplash.com/photo-1523482580691-628d3bdbe0cc?auto=format&fit=crop&q=80&w=800",
+    image: aus2Img,
     description: "Experience state-of-the-art research centers, high quality of living, and generous post-study work rights in a vibrant innovation hub.",
     benefits: ["World-class Research Facilities", "High Student Minimum Wages", "Exceptional Lifestyle & Weather"]
   },
   {
     name: "Germany",
-    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&q=80&w=800",
+    image:ger2Img,
     description: "Enter Europe's industrial powerhouse. Benefit from highly ranked public universities offering minimal or zero tuition fees.",
     benefits: ["Zero Tuition Fee Schemes", "Global Engineering Hub", "Unrivaled Economic Stability"]
   }
