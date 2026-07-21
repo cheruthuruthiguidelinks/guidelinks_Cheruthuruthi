@@ -43,12 +43,12 @@ const CallbackModal = ({ isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
+      <div className="fixed inset-0 z-[300] flex items-center sm:items-center justify-center overflow-y-auto p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-white rounded-[2.5rem] max-w-lg w-full shadow-2xl border border-gray-100 relative overflow-hidden p-6 sm:p-10"
+          className="bg-white rounded-[2.5rem] max-w-lg w-full shadow-2xl border border-gray-100 relative overflow-y-auto max-h-[92vh] my-6 sm:my-0 p-6 sm:p-10"
         >
           {/* Background Ambient Glow */}
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
