@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { GraduationCap, Building2, ShieldCheck, CheckCircle, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import coimImg from '../assets/destination/coimbature1.jpeg'
 import kochiImg from '../assets/destination/kochi1.jpeg'
 import bngImg from '../assets/destination/bangalore.jpeg'
@@ -183,13 +184,18 @@ const AdmissionSouthIndia = ({ showHero = true }) => {
                  </ul>
                </div>
 
-               <motion.button 
+               <motion.div
                  whileHover={{ scale: 1.02 }}
                  whileTap={{ scale: 0.98 }}
-                 className="mt-8 w-full py-4 bg-brand-500 hover:bg-brand-600 text-white text-xs tracking-wider uppercase font-bold rounded-2xl transition-all shadow-md cursor-pointer"
+                 className="mt-8 w-full"
                >
-                  Check Seat Availability
-               </motion.button>
+                 <Link
+                   to="/contact"
+                   className="flex w-full items-center justify-center rounded-2xl bg-brand-500 py-4 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-brand-600"
+                 >
+                   Check Seat Availability
+                 </Link>
+               </motion.div>
             </div>
 
           </div>

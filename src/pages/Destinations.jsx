@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ShieldCheck, ChevronRight, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import can2Img from '../assets/destination/can3.jpeg'
 import aus2Img from '../assets/destination/aus2.jpg'
 import uk2Img from '../assets/destination/uk2.jpeg'
@@ -131,14 +132,19 @@ const Destinations = () => {
                 </div>
 
                 {/* CTA Action button */}
-                <motion.button 
+                <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="mt-10 px-8 py-3.5 bg-brand-500 text-white rounded-2xl font-bold text-xs tracking-wider uppercase hover:bg-brand-650 transition-colors shadow-md hover:shadow-lg w-full sm:w-fit cursor-pointer flex items-center justify-center gap-2"
+                  className="mt-10 w-full sm:w-fit"
                 >
-                  Learn More
-                  <ChevronRight className="w-4 h-4" />
-                </motion.button>
+                  <Link
+                    to="/contact"
+                    className="px-8 py-3.5 bg-brand-500 text-white rounded-2xl font-bold text-xs tracking-wider uppercase hover:bg-brand-650 transition-colors shadow-md hover:shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    Book Free Counselling
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           );
