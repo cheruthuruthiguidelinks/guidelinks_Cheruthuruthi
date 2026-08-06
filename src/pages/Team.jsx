@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { User, GraduationCap, Compass, Globe, Sparkles, ExternalLink } from 'lucide-react';
+import { User, GraduationCap, Compass, Globe, ExternalLink } from 'lucide-react';
+import devovaLogo from '../assets/logos/devova-solutions-logo.jpeg';
 
 const PageHero = ({ title, subtitle }) => (
   <div className="relative pt-36 pb-20 overflow-hidden bg-brand-50">
@@ -178,18 +179,22 @@ const Team = () => {
             viewport={{ once: true }}
             className="glass-card rounded-[2rem] p-8 md:p-10 border border-brand-100/60 shadow-lg mt-8"
           >
-            <div className="flex flex-col items-center gap-6">
-              <div className="w-16 h-16 rounded-2xl bg-slate-900 flex items-center justify-center shadow-md">
-                <Sparkles className="w-8 h-8 text-sky-400" />
-              </div>
+              <div className="flex flex-col items-center gap-6">
+                <div className="relative w-40 h-16 overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-slate-200">
+                  <img
+                    src={devovaLogo}
+                    alt="Devova Solutions logo"
+                    className="absolute left-1/2 -top-[84px] w-56 max-w-none -translate-x-1/2"
+                  />
+                </div>
               
               <div>
-                <h3 className="text-2xl font-extrabold text-gray-900 mb-2">Devova Technologies</h3>
+                <h3 className="text-2xl font-extrabold text-gray-900 mb-2">Devova Solutions</h3>
                 <p className="text-xs font-bold text-brand-650 tracking-wider">OFFICIAL DIGITAL & PLATFORM PARTNER</p>
               </div>
 
               <p className="text-gray-500 font-medium text-sm leading-relaxed max-w-md">
-                Devova Technologies drives the web experiences, tech architectures, and digital marketing outreach for Guidelinks International.
+                Devova Solutions drives the web experiences, tech architectures, and digital marketing outreach for Guidelinks International.
               </p>
 
               <motion.a 
